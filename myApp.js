@@ -34,6 +34,13 @@ app.get(
   }
 );
 
+//Build an echo server, mounted at the route GET /:word/echo.
+// Respond with a JSON object, taking the structure {echo: word}.
+// You can find the word to be repeated at req.params.word.
+app.get('/:word/echo',function(req,res){
+    res.json({echo: req.params.word})
+  })
+
 //The endpoint /json should serve the json object {"message": "Hello json"}
 
 app.get("/json", function (req, res) {
