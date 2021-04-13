@@ -3,6 +3,17 @@ var app = express();
 
 // sendFile method will set the appropriate headers to instruct your browser on how to handle the file you want to send
 var static = express.static("public");
+//Build a simple logger. For every request, it should log to the console a string taking the following format: method path - ip
+var simpleLogger = function (req, res, next) {
+  //method path - ip
+  console.log(req.method + " " + req.path + " " + "-" + " " + req.ip);
+  next();
+};
+//mount a middleware function at root level, you can use the app.use(<mware-function>)
+app.use(simpleLogger);
+
+// serving static assets
+app.use("/public", static);
 
 app.get("/", function (req, res) {
   let path = __dirname + "/views/index.html";
@@ -18,6 +29,3 @@ app.get("/json", function (req, res) {
     res.json({ message: "Hello json" });
   }
 });
-
-// serving static assets
-app.use("/public", static);
