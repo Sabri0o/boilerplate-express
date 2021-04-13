@@ -9,5 +9,13 @@ app.get('/',function(req,res){
   res.sendFile(path)
 })
 
+//The endpoint /json should serve the json object {"message": "Hello json"}
+
+app.get('/json',function(req,res){
+    res.json({"message": "Hello json"})
+  })
+
 // serving static assets
 app.use('/public',static)
+
+
