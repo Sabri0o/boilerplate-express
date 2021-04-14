@@ -50,6 +50,17 @@ app.get('/name',function(req,res){
   res.json({ name: `${firstname} ${lastname}`})
 })
 
+
+//Mount a POST handler at the path /name
+//In these kind of requests, the data doesn’t appear in the URL, it is hidden in the request body.
+// The body is a part of the HTTP request, also called the payload. 
+//Even though the data is not visible in the URL, this does not mean that it is private.
+app.post('/name',function(req,res){
+  let firstname = req.body.first
+  let lastname = req.body.last
+  res.json({ name: `${firstname} ${lastname}`})
+})
+
 //The endpoint /json should serve the json object {"message": "Hello json"}
 
 app.get("/json", function (req, res) {
